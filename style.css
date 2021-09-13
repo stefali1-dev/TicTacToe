@@ -1,0 +1,44 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#body {
+    background-color: #4e4d63;
+}
+
+#container {
+    width: fit-content;
+    height: auto;
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 150px);
+    grid-column-gap: 5px;
+
+    grid-template-rows: repeat(3, 150px);
+    grid-row-gap: 5px;
+
+    background-color: #0E0E0E;
+    border: solid;
+    border-radius: 6px;
+    border-color: #0E0E0E;
+    border-width: 5px;
+}
+
+#container > div {
+
+    background-color: #F9F9F9;
+    border-radius: 6px;
+    font-size: 6.5em;
+    line-height: 1.45em;
+    font-family: Tahoma, sans-serif;
+    text-align: center;
+    user-select: none;
+}
+
+#container > div:hover {
+
+    background-color: #E1E1E1;
+}
