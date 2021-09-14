@@ -28,9 +28,60 @@ const gameBoard = (() => {
 
 const gameFlow = (() => {
 
-    var turn;
+    var turn = "X";
 
-    return {turn};
+    const switchTurns = () => {
+
+        if(turn == "X") {
+
+            turn = "O";
+        }
+
+        else {
+
+            turn = "X";
+        }
+    };
+
+    const eventFunction = (square) => {
+
+        for(let i = 0; i < 9; i++) {
+
+            // daca nu a mai fost apasat
+            if(square === child_nodes[i] && gameBoard.arr[i] == null) {
+
+                // removing :hover effect
+                square.addEventListener('mouseenter', () => {
+
+                    square.style = "background-color: #F9F9F9;";
+                });
+        
+                // updating arr
+                gameBoard.arr[i] = turn;
+        
+                gameBoard.render();
+        
+                switchTurns();
+            }
+        }
+    };
+
+    const addEventListeners = (child_nodes) => {
+
+        for(let i = 0; i < 9; i++) {
+
+            child_nodes[i].addEventListener("click", () => eventFunction(child_nodes[i]));
+        }
+    }
+
+    const start = () => {
+
+        // dab
+        addEventListeners(child_nodes);
+
+    };
+
+    return {start};
 })();
 
 const player = () => {
@@ -40,11 +91,12 @@ const player = () => {
         //dab
     };
 
-    return (makeMove);
 };
 
-gameBoard.arr = ["0", "X", null, null, null, null, null, null, "0"];
+gameBoard.arr = [null, null, null, null, null, null, null, null, null];
 
 gameBoard.render();
+
+gameFlow.start();
 
 
