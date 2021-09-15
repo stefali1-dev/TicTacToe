@@ -1,13 +1,9 @@
-html, body {
-    margin: 0;
-    height: 100%;
-}
 
 #body {
     background-color: #4e4d63;
 }
 
-#container {
+#table {
     width: fit-content;
     height: auto;
     margin: 0 auto;
@@ -27,7 +23,7 @@ html, body {
     border-width: 5px;
 }
 
-#container > div {
+#table > div {
 
     background-color: #F9F9F9;
     border-radius: 6px;
@@ -36,9 +32,14 @@ html, body {
     font-family: Tahoma, sans-serif;
     text-align: center;
     user-select: none;
+
 }
 
-#container > div:hover {
+#table > div:hover {
 
     background-color: #E1E1E1;
+}
+
+#container {
+    margin-top: 100px;
 }

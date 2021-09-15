@@ -1,4 +1,4 @@
-var child_nodes = document.querySelector('#container').children;
+var child_nodes = document.querySelector('#table').children;
 
 const gameBoard = (() => {
 
@@ -62,6 +62,8 @@ const gameFlow = (() => {
                 gameBoard.render();
         
                 switchTurns();
+
+                console.log(isOver(gameBoard.arr));
             }
         }
     };
@@ -74,6 +76,37 @@ const gameFlow = (() => {
         }
     }
 
+    const isOver = (arr) => {
+
+        // linii si coloane
+        for(let i = 0; i < 3; i++){
+
+            if(arr[i*3] == arr[i*3 + 1] && arr[i*3] == arr[i*3 + 2] && arr[i*3]) {
+
+                return true;
+            }
+            
+            if(arr[i] == arr[i + 3] && arr[i] == arr[i + 6] && arr[i]) {
+
+                return true;
+            }
+        }
+
+        // diagonale
+        if((arr[0] && arr[0] == arr[4] && arr[0] == arr[8]) ||
+         (arr[2] && arr[2] == arr[4] && arr[2] == arr[6])) {
+
+            return true;
+        }
+
+        if(!arr.includes(null)) {
+
+            return "tie";
+        }
+
+        return false;
+    };
+
     const start = () => {
 
         // dab
@@ -81,7 +114,7 @@ const gameFlow = (() => {
 
     };
 
-    return {start};
+    return {start, isOver};
 })();
 
 const player = () => {
@@ -94,6 +127,8 @@ const player = () => {
 };
 
 gameBoard.arr = [null, null, null, null, null, null, null, null, null];
+
+
 
 gameBoard.render();
 
