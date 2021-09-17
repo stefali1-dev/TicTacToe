@@ -1,6 +1,14 @@
 
 #body {
-    background-color: #4e4d63;
+    background-color: #F3F0EA;
+    margin: 0;
+}
+
+.text {
+
+    font-family: 'Varela Round', sans-serif;
+    user-select: none;
+    color: #F3F0EA;
 }
 
 #table {
@@ -16,20 +24,20 @@
     grid-template-rows: repeat(3, 150px);
     grid-row-gap: 5px;
 
-    background-color: #0E0E0E;
+    background-color: #2E2E2E;
     border: solid;
     border-radius: 6px;
-    border-color: #0E0E0E;
+    border-color: #2E2E2E;
     border-width: 5px;
 }
 
 #table > div {
 
-    background-color: #F9F9F9;
+    background-color: #F8F6F4;
     border-radius: 6px;
     font-size: 6.5em;
-    line-height: 1.45em;
-    font-family: Tahoma, sans-serif;
+    line-height: 1.35em;
+    font-family: 'Varela Round', sans-serif;
     text-align: center;
     user-select: none;
 
@@ -40,6 +48,49 @@
     background-color: #E1E1E1;
 }
 
-#container {
-    margin-top: 100px;
+#radiocontainer {
+
+    margin: 0 auto 10px auto ;
+    width: fit-content;
+}
+
+#radiocontainer > label {
+
+    font-family: 'Varela Round', sans-serif;
+    user-select: none;
+    font-size: 1.5em;
+}
+
+#banner {
+
+    border-bottom: 3px solid black;
+    background-color: #2E2E2E;
+}
+
+#choosetext {
+
+    font-size: 1.5em;
+
+    margin: 0 auto 10px auto ;
+    width: fit-content;
+}
+
+#title {
+
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 7em;
+}
+
+#status {
+
+    height: 33px;
+    width: fit-content;
+    margin: 30px auto;
+
+    font-family: 'Varela Round', sans-serif;
+    user-select: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #232323;
 }
