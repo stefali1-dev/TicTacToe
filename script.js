@@ -1,6 +1,9 @@
-var child_nodes = document.querySelector('#table').children;
+var child_nodes = document.querySelector('#grid').children;
+
+var restartBtn = document.querySelector('#resetbtn');
 
 // de terminat radio, isOver(), reset btn ...
+
 
 function removeHover(index) {
 
@@ -53,25 +56,35 @@ const gameBoard = (() => {
         }
     }
 
-    return {arr, makeEmptyArr, render, checkedRadioSymbol};
+    const restart = () => {
+
+        gameBoard.arr = makeEmptyArr(arr);
+
+        gameFlow.updateStatus("");
+
+        for(let i = 0; i < 9; i++) {
+
+            child_nodes[i].addEventListener('mouseenter', () => {
+
+                child_nodes[i].style = "";
+            });
+        }
+
+        render();
+    };
+
+    return {arr, makeEmptyArr, render, checkedRadioSymbol, restart};
 
 })();
 
 const gameFlow = (() => {
 
-    var turn = "X";
+    const setUpRestartBtn = () => {
 
-    const switchTurns = () => {
+        restartBtn.addEventListener('click', () => {
 
-        if(turn == "X") {
-
-            turn = "O";
-        }
-
-        else {
-
-            turn = "X";
-        }
+            gameBoard.restart();
+        })
     };
 
     const updateStatus = (string) => {
@@ -89,9 +102,26 @@ const gameFlow = (() => {
 
         gameBoard.render();
 
-        console.log(isOver(gameBoard.arr));
 
-        bot.makeMove();
+
+        if(isOver(gameBoard.arr)) {
+
+            if(isOver(gameBoard.arr) == "tie"){
+
+                updateStatus("It's a tie!");
+            }
+
+            else {
+
+                updateStatus("You won!");
+            }
+
+        }
+
+        else {
+
+            bot.makeMove();
+        }
 
     };
 
@@ -101,7 +131,7 @@ const gameFlow = (() => {
 
             child_nodes[i].addEventListener("click", () => {
 
-                if(gameBoard.arr[i] == null) {
+                if(gameBoard.arr[i] == null && !isOver(gameBoard.arr)) {
 
                     eventFunction(i);
                 }
@@ -142,15 +172,15 @@ const gameFlow = (() => {
 
     const start = () => {
 
-        gameBoard.makeEmptyArr();
-
         gameBoard.render();
 
         addEventListeners(child_nodes);
 
+        setUpRestartBtn();
+
     };
 
-    return {start, isOver};
+    return {start, isOver, updateStatus};
 })();
 
 const player = (() => {
@@ -163,7 +193,7 @@ const player = (() => {
 
 const bot = (() => {
 
-    function oppositeSymbol(symbol) {
+    const oppositeSymbol = (symbol) => {
         if(symbol == "x") {
     
             return "o";
@@ -195,9 +225,21 @@ const bot = (() => {
 
                     gameBoard.arr[i] = bot.symbol;
 
-                    setTimeout(() => {  gameBoard.render(); }, 600);
+                    setTimeout(() => {  gameBoard.render(); }, 300);
 
-                    console.log(gameFlow.isOver(gameBoard.arr));
+                    if(gameFlow.isOver(gameBoard.arr)) {
+
+                        if(gameFlow.isOver(gameBoard.arr) == "tie"){
+            
+                            gameFlow.updateStatus("It's a tie!");
+                        }
+            
+                        else {
+            
+                            gameFlow.updateStatus("You lost!");
+                        }
+            
+                    }
                 }
 
                 k++;
@@ -210,5 +252,3 @@ const bot = (() => {
 })();
 
 gameFlow.start();
-
-

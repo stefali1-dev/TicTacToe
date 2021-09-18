@@ -11,7 +11,7 @@
     color: #F3F0EA;
 }
 
-#table {
+#grid {
     width: fit-content;
     height: auto;
     margin: 0 auto;
@@ -31,7 +31,7 @@
     border-width: 5px;
 }
 
-#table > div {
+#grid > div {
 
     background-color: #F8F6F4;
     border-radius: 6px;
@@ -43,7 +43,7 @@
 
 }
 
-#table > div:hover {
+#grid > div:hover {
 
     background-color: #E1E1E1;
 }
@@ -93,4 +93,31 @@
     font-size: 1.8em;
     font-weight: bold;
     color: #232323;
+}
+
+#resetbtn {
+
+    width: 250px;
+    height: 100px;
+    color: #F8F6F4;
+    font-family: 'Varela Round', sans-serif;
+    user-select: none;
+    font-size: 3em;
+    margin: 20px auto 10px auto;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 6px;
+    border-color: #353131;
+
+    background-color: #2E2E2E;
+}
+
+#resetbtn:active {
+
+    transform: scale(0.99);
+}
+
+#resetbtn:hover {
+
+    background-color: #3d3d3d;
 }
