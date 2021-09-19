@@ -2,7 +2,7 @@ var child_nodes = document.querySelector('#grid').children;
 
 var restartBtn = document.querySelector('#resetbtn');
 
-// de terminat radio, isOver(), reset btn ...
+// de terminat radio
 
 
 function removeHover(index) {
@@ -16,6 +16,19 @@ function removeHover(index) {
                 child_nodes[i].style = "background-color: #F8F6F4;";
             });
         }
+    }
+}
+
+function oppositeSymbol(symbol) {
+
+    if(symbol == "x") {
+
+        return "o";
+    }
+
+    else {
+
+        return "x";
     }
 }
 
@@ -68,6 +81,13 @@ const gameBoard = (() => {
 
                 child_nodes[i].style = "";
             });
+        }
+
+        if(checkedRadioSymbol() == "o") {
+
+            bot.symbol = "x";
+            
+            bot.makeMove();
         }
 
         render();
@@ -139,6 +159,35 @@ const gameFlow = (() => {
         }
     }
 
+    const addRadioListeners = () => {
+
+        var radio_btn_x = document.querySelector("#x");
+
+        var radio_btn_o = document.querySelector("#o");
+
+        const onClickFunction = (radio_btn) => {
+
+            //alert("sal")
+
+            gameBoard.restart();
+
+            player.symbol = radio_btn.value;
+
+            bot.symbol = oppositeSymbol(player.symbol);
+
+        };
+
+        radio_btn_x.onclick = () => {
+
+            onClickFunction(radio_btn_x);
+        };
+
+        radio_btn_o.onclick = () => {
+
+            onClickFunction(radio_btn_o);
+        };
+    };
+
     const isOver = (arr) => {
 
         // linii si coloane
@@ -178,6 +227,8 @@ const gameFlow = (() => {
 
         setUpRestartBtn();
 
+        addRadioListeners();
+
     };
 
     return {start, isOver, updateStatus};
@@ -192,18 +243,6 @@ const player = (() => {
 })();
 
 const bot = (() => {
-
-    const oppositeSymbol = (symbol) => {
-        if(symbol == "x") {
-    
-            return "o";
-        }
-    
-        else {
-    
-            return "x";
-        }
-    }
 
     var symbol = oppositeSymbol(player.symbol);
 
